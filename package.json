@@ -4,12 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "@powershell $env:DEBUG='*'; node ./dev/test.js"
   },
-	"keywords": [
-		"blockchain",
-		"javascript"
-	],
+  "keywords": [
+    "blockchain",
+    "javascript"
+  ],
   "author": "Tomasz Czerwiński",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/eslint-parser": "7.15.0",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-plugin-import": "2.24.1"
+  },
+  "dependencies": {
+    "sha256": "0.2.0",
+    "debug": "4.3.2"
+  }
 }
