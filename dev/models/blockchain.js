@@ -1,10 +1,15 @@
 const sha256 = require('sha256');
 const DEBUG = require('debug')('proofOfWork');
 
+const currentNodeUrl = process.argv[3];
+
 class Blockchain {
   constructor() {
     this.chain = [];
     this.pendingTransactions = [];
+    this.currentNodeUrl = currentNodeUrl;
+    this.networkNodes = [];
+    this.createNewBlock(0, null, '0'.repeat(64));
   }
 
   createNewBlock(nonce, previousBlockHash, hash) {
@@ -52,9 +57,12 @@ class Blockchain {
       hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
     } while (hash.substring(0, 4) !== '0000');
 
-    DEBUG('hash: ', hash);
-    DEBUG('nonce: ', nonce);
+    DEBUG(`hash: ${hash}\nnonce: ${nonce}`);
     return nonce;
+  }
+
+  getChain() {
+    return this.chain;
   }
 }
 
